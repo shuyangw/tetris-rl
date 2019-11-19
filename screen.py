@@ -5,6 +5,7 @@ import numpy as np
 
 from PIL import ImageGrab
 
+
 def rgb_to_grayscale(pixel):
 	return pixel[0] * 0.299 + pixel[1] * 0.587 + pixel[2] * 0.114
 
@@ -17,7 +18,7 @@ def get_window_pixels(rect):
 	export_pixels = [[0 for y in range(y_range)] for x in range(x_range)]
 	for y in range(rect[1], rect[3]):
 		for x in range(rect[0], rect[2]):
-			export_pixels[x-start_x][y-start_y] = np.uint8(pixels[x,y])
+			export_pixels[x-start_x][y-start_y] = rgb_to_grayscale(pixels[x,y])
 	return np.array(export_pixels)
 
 #Gets hwnd list
@@ -58,3 +59,6 @@ def get_window_rect():
 		print("Unexpected error, please restart game retry")
 		sys.exit()
 	return rect
+
+def grab_frame():
+	rect = grab_window_rect()
