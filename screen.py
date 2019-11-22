@@ -32,8 +32,12 @@ def _get_windows_by_title(title_text, exact = False):
 	else:
 		return [hwnd for hwnd, title in windows if title_text in title]
 
+"""
+Brings the desired window denoted by the hwnd to the front of the screen.
+Parameters:
+ - hwnd: A windows hwnd object that represents the 
+"""
 def _bring_to_front(hwnd):
-	#Sets window to be in front
 	try:
 		win32gui.SetForegroundWindow(hwnd)
 	except:
@@ -61,4 +65,4 @@ def get_window_rect():
 	return rect
 
 def grab_frame():
-	rect = grab_window_rect()
+	rect = get_window_rect()
